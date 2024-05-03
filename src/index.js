@@ -11,17 +11,17 @@ import { Provider } from "react-redux"; // reduxta storu sarmalamak için
 import { store } from "./redux/store";
 import ThemeContextProvider from "./context/themeContextProvider";
 
-
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ThemeContextProvider>
-    <BrowserRouter>
-      <Provider store={store}> {/*sarmalama işlemi tamamlandı. değer atandı */}
-        <App />
-      </Provider >
-    </BrowserRouter>
+      <BrowserRouter>
+        <Provider store={store}>
+          {" "}
+          {/*sarmalama işlemi tamamlandı. değer atandı */}
+          <App />
+        </Provider>
+      </BrowserRouter>
     </ThemeContextProvider>
   </React.StrictMode>
 );
