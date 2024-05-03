@@ -15,10 +15,10 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 
-const ProductCard = ({ image, description, title, category, price }) => {
+const ProductCard = ({id, image, description, title, category, price }) => {
   const dispatch = useDispatch();
   const handleProduct = () => {
-    dispatch(addBasket({ image, description, title, category, price }));
+    dispatch(addBasket({id, image, description, title, category, price }));
     // console.log(addBasket());
   };
 
@@ -32,10 +32,10 @@ const ProductCard = ({ image, description, title, category, price }) => {
         <p>{price} $</p>
       </CardContent>
       <CardActions>
-        <p>{category}</p>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
+       
+        <Typography>
+          {category}
+        </Typography>
         <IconButton aria-label="share">
           <ShoppingBasketIcon onClick={handleProduct} />
         </IconButton>
