@@ -47,7 +47,7 @@ const FiiledBasketTotal = () => {
   // }; daha clean code için aşağıda da şöyle yazacaktın ör:handlePlus(id,plusBasket)
   console.log(basketItems);
   return (
-    <Box>
+    <Box marginTop="10rem">
       <Box display="flex" justifyContent={"space-evenly"} flexWrap="wrap">
         {basketItems.map((item) => (
           <Box key={item.id}>

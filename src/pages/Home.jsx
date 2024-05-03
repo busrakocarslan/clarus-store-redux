@@ -34,7 +34,7 @@ const Home = () => {
   };
 
   return (
-    <Box >
+    <Box marginTop="10rem" >
       <Typography  textAlign="center">
       <ButtonGroup  variant="text" size="small" >
         <Button onClick={() => setCategory("")}>ALL</Button>
