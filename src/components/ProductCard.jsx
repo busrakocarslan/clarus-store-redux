@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux"; //??
+import { useDispatch, useSelector } from "react-redux"; //??
 import { addBasket, delBasket } from "../redux/action/basketAction";
 
 import { styled } from "@mui/material/styles";
@@ -14,32 +14,42 @@ import Typography from "@mui/material/Typography";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import { Box } from "@mui/material";
 
-const ProductCard = ({id, image, description, title, category, price }) => {
+const ProductCard = ({ id, image, description, title, category, price }) => {
+  const basketItem = useSelector((state) => state.basket);
   const dispatch = useDispatch();
   const handleProduct = () => {
-    dispatch(addBasket({id, image, description, title, category, price }));
+    if (!basketItem.find((item) => item.id === id)) {
+      return dispatch(
+        addBasket({ id, image, description, title, category, price })
+      );
+    }
+
     // console.log(addBasket());
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia component="img" height="194" image={image} alt={title} />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {description}
+    <Card sx={{ maxWidth: 345, m: 5, maxHeight: 600, p: 1, width: 250,boxShadow:"2px 2px 5px gray" }}>
+      <CardMedia
+        component="img"
+        height="250"
+        image={image}
+        alt={title}
+        sx={{ objectPosition: "center", objectFit: "contain" }}
+      />
+      <Box display="flex" justifyContent={"space-between"} gap={2}  m={1.5}>
+        <Typography variant="body2" color="amber.dark">
+          {title}
         </Typography>
-        <p>{price} $</p>
-      </CardContent>
-      <CardActions>
-       
-        <Typography>
-          {category}
-        </Typography>
+        <Typography color="amber.dark">{price}$</Typography>
+      </Box>
+      <Box display={"flex"} justifyContent={"space-between"} alignItems="center" color="amber.light" >
+        <Typography>{category}</Typography>
         <IconButton aria-label="share">
           <ShoppingBasketIcon onClick={handleProduct} />
         </IconButton>
-      </CardActions>
+      </Box>
     </Card>
   );
 };

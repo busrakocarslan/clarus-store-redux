@@ -1,7 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import ProductCard from "./ProductCard";
-import { Box, Button, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import {
   delBasket,
   minusBasket,
@@ -19,8 +25,8 @@ const FiiledBasketTotal = () => {
     dispatch(plusBasket(id));
   };
   const handleMinus = (id) => {
-    const item=basketItems.find((item) => item.id === id) 
-    if(item.quantity>1){
+    const item = basketItems.find((item) => item.id === id);
+    if (item.quantity > 1) {
       dispatch(minusBasket(id));
     }
   };
@@ -41,30 +47,41 @@ const FiiledBasketTotal = () => {
   // }; daha clean code için aşağıda da şöyle yazacaktın ör:handlePlus(id,plusBasket)
   console.log(basketItems);
   return (
-    <Box>
-      <h2></h2>
-      {basketItems.map((item) => (
-        <Box key={item.id}>
-          <ProductCard
-            id={item.id}
-            image={item.image}
-            title={item.title}
-            price={item.price}
-            // price={(item.price * item.quantity).toFixed(2)}
-            quantity={item.quantity}
-          />
-          <Box>
-            <Button onClick={() => handleMinus(item.id)}>-</Button>
-            <Typography>{item.quantity}</Typography>
-            <Button onClick={() => handlePlus(item.id)}>+</Button>
+    <Box border="2px solid red">
+      <Box display="flex" justifyContent={"space-evenly"} flexWrap="wrap">
+        {basketItems.map((item) => (
+          <Box key={item.id}>
+            <Card sx={{ maxWidth: 345, m: 5, maxHeight: 600, p: 1, width: 250,boxShadow:"2px 2px 5px gray" }} id={item.id}>
+              <CardMedia
+                component="img"
+                height="250"
+                image={item.image}
+                alt={item.title}
+                sx={{ objectPosition: "center", objectFit: "contain" }}
+              />
+              <Box display="flex" justifyContent={"space-between"} gap={2}  m={1.5}>
+              <Typography variant="body2" color="amber.dark">
+          {item.title}
+        </Typography>
+        <Typography color="amber.dark">{item.price}$</Typography>
+              </Box>
+              <Box
+               
+                display="flex" justifyContent="flex-start" alignItems="center"
+              >
+                <Button onClick={() => handleMinus(item.id)}>-</Button>
+                <Typography>{item.quantity}</Typography>
+                <Button onClick={() => handlePlus(item.id)}>+</Button>
+                <Button variant="contained" onClick={() => handleRemove(item.id)}>REMOVE</Button>
+              </Box>
+            </Card>
           </Box>
-          <Button onClick={() => handleRemove(item.id)}>REMOVE</Button>
-        </Box>
-      ))}
-      <Box>
-        <Typography>Subtotal:{basketFullPrice()} </Typography>
+        ))}
+      </Box>
+      <Box display="flex" justifyContent="space-evenly" alignItems="center" m={5}>
+        <Typography color="primary">Subtotal :<span color="amber.main">{basketFullPrice()}$ </span></Typography>
 
-        <Button onClick={handleClean}>EMPTY CARD</Button>
+        <Button  variant="contained"  onClick={handleClean}>EMPTY CARD</Button>
       </Box>
     </Box>
   );
