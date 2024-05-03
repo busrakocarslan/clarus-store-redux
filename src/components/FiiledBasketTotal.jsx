@@ -47,7 +47,7 @@ const FiiledBasketTotal = () => {
   // }; daha clean code için aşağıda da şöyle yazacaktın ör:handlePlus(id,plusBasket)
   console.log(basketItems);
   return (
-    <Box border="2px solid red">
+    <Box>
       <Box display="flex" justifyContent={"space-evenly"} flexWrap="wrap">
         {basketItems.map((item) => (
           <Box key={item.id}>
@@ -79,9 +79,9 @@ const FiiledBasketTotal = () => {
         ))}
       </Box>
       <Box display="flex" justifyContent="space-evenly" alignItems="center" m={5}>
-        <Typography color="primary">Subtotal :<span color="amber.main">{basketFullPrice()}$ </span></Typography>
+        <Typography color="primary" borderBottom="3px solid" p={1}>Subtotal :<span color="amber.main">{basketFullPrice()}$ </span></Typography>
 
-        <Button  variant="contained"  onClick={handleClean}>EMPTY CARD</Button>
+        <Button  variant="contained" color="amber"  onClick={handleClean}>EMPTY CARD</Button>
       </Box>
     </Box>
   );

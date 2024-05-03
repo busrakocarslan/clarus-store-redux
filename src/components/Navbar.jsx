@@ -12,8 +12,8 @@ const Navbar = () => {
   const navigate = useNavigate();
   const basket=useSelector(state=>state.basket)
   return (
-    <Box display="flex" my={5} mx={2}  justifyContent="space-between"  sx={{backgroundColor: blueGrey[400]}} padding={1} paddingBlockStart={5}   >
-      <Typography variant="h4" sx={{":hover":{cursor:"pointer"}}}  onClick={() => navigate("/")} color="primary" fontWeight="bolder">
+    <Box display="flex" my={5} mx={2}  justifyContent="space-between"  sx={{backgroundColor: blueGrey[400]}} padding={1} paddingBlockStart={5} borderRadius="10px" boxShadow="2px 2px 5px "  >
+      <Typography variant="h4" sx={{":hover":{cursor:"pointer"}}}  onClick={() => navigate("/")} color="primary" fontWeight="bolder" >
         NewSeason Store
       </Typography>
       <Link to="/basket" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
